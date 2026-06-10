@@ -7,13 +7,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cloudflare.com" crossorigin="anonymous" referrerpolicy="no-repeat" />
+
     <title>Document</title>
 </head>
 <body>
+    
+    <header>
+            <div class="fadeBlur"></div>    
+            <figure class="logo">
+                <p>DoAll</p>
+            </figure>
+            
+    </header>
     <main>
-        <div class="main-content">
-            <div class="right-area">
+        
+        <div class="main-content draggable">
+            <div class="toolbar">
+                <h1>NotePad</h1>
+                <p>Maximizar</p>
+            </div>
+            <div class= "item">
+                <div class="right-area">
             <form id = 'form'>
                 <textarea id="input" rows="10" cols="100" placeholder="Start typing..."></textarea>
                 <input type="submit" value="Salvar">  
@@ -24,7 +39,7 @@
                 <h2>Notas</h2>
             </div>
             <div id= 'notes'>
-
+                <div class="blurNote"></div>
             </div>
         </div>
         </div>

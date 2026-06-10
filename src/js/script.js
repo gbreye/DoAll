@@ -61,4 +61,31 @@ form.addEventListener('submit', function(event){
 }    
 });
 
+const draggables = document.querySelectorAll('.draggable');
+        let isDragging = false;
+
+        
+        function dragElement(event, element) {
+            let leftValue = parseInt(window.getComputedStyle(element).left);
+            let topValue = parseInt(window.getComputedStyle(element).top);
+            element.style.left = `${leftValue + event.movementX}px`;
+            element.style.top = `${topValue + event.movementY}px`;
+            draggables.forEach((el) => {
+                el.style.zIndex = '1';
+            });
+            element.style.zIndex = '10';
+            
+        }
+
+         draggables.forEach((element) => {
+            element.addEventListener("mousedown", (e) => {
+                const onMove = (event) => dragElement(event, element);
+                element.style.userSelect = 'none';
+                document.addEventListener("mousemove", onMove);
+                document.addEventListener("mouseup", () => {
+                    document.removeEventListener("mousemove", onMove);
+                    element.style.userSelect = 'auto';
+                }, { once: true });
+            });
+        });
 

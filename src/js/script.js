@@ -42,7 +42,6 @@ form.addEventListener('submit', function(event){
         id.textContent = userNotes.id;
         console.log(userNotes.id)
         noteDiv.appendChild(textNote);
-        noteDiv.appendChild(id);
         notes.appendChild(noteDiv);
     }
 

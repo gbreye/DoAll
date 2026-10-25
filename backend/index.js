@@ -4,13 +4,15 @@ import {Server} from "socket.io"
 import dotenv from "dotenv";
 import cors from "cors";
 
+import { SocketAuthMiddleware } from "./middleware/token.js";
+
 const app = express();
 const port = 3000;
 const server = http.createServer(app);
 app.use(express.json());
-dotenv.config()
+dotenv.config();
 
-const corsOrigin = process.env.CORS_ORIGIN; 
+const corsOrigin = process.env.CORS; 
 
 const allowed = (corsOrigin || "").split(",").map(s => s.trim()).filter(Boolean);
 if (!allowed.length) { console.error("CORS_ORIGIN ausente"); process.exit(1); }
@@ -30,13 +32,13 @@ export const io = new Server(server, {
   cors: corsOptions,
 });
 
-io.use()
+io.use(SocketAuthMiddleware)
 
 app.get('/', (req, res) => {
     res.send("Hello from the API");
 });
 
-app.listen(port);
+server.listen(port);
 
 
 

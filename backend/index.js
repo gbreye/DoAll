@@ -16,7 +16,7 @@ const allowed = (corsOrigin || "").split(",").map(s => s.trim()).filter(Boolean)
 if (!allowed.length) { console.error("CORS_ORIGIN ausente"); process.exit(1); }
 
 const corsOptions = {
-  origin: corsOrigin,
+  origin: allowed,
   credentials: true,
   methods: ['GET', 'POST', 'OPTIONS', 'PUT'],
   allowedHeaders: ['Content-Type', 'Authorization', 'x-api-key'],
@@ -30,11 +30,13 @@ export const io = new Server(server, {
   cors: corsOptions,
 });
 
+io.use()
+
 app.get('/', (req, res) => {
     res.send("Hello from the API");
 });
 
-server.listen(port);
+app.listen(port);
 
 
 
